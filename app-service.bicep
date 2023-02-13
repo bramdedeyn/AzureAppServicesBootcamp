@@ -5,11 +5,9 @@ param sku string = 'S1' // The SKU of App Service Plan
 param linuxFxVersion string = 'DOCKER|unfor19/docker-cats:latest'
 
 @description('The location for all resources.')
-param location string
+param location string = resourceGroup().location
 
-@description('The username to use for your resource names.')
-param username string
-
+var username = split(resourceGroup().name, '-')[0]
 var appServicePlanName = toLower('${username}-plan001')
 var webSiteName = toLower('${username}-app001')
 

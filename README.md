@@ -1,16 +1,12 @@
 
 # Deploying an App Service with bicep
 
-This repository contains two bicep files:
-
-* `app-service.bicep`: A config for an app service plan, with a container app service and an extra staging slot.
-* `main.bicep`: This deploys a resource group and uses the app service module above to deploy the resources in that resource group.
+This repository contains one bicep file `app-service.bicep`. This template file contains baisc configuration for an app service plan with one app service and an extra staging slot in a given resource group.
 
 ## How to deploy
 
-Use the Azure CLI to create a deployment and pass `main.bicep` as the template file. The deployment location and a username need to be entered as well. The username is used to generate names for the resource group and its resources.
+Use the Azure CLI to create a deployment. Pass the bicep template file and enter the resource group name. The resource group name is used to generate names for its resources.
 
 ```bash
-az deployment sub create --template-file main.bicep --location westeurope  # and pass username via stdin, or:
-az deployment sub create --template-file main.bicep --location westeurope --parameter username=userXXX
+az deployment group create --template-file app-service.bicep --resource-group user<XXX>-lab-rg
 ```
